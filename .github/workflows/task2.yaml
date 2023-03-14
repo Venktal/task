@@ -15,13 +15,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
     - name: get vm metadata
-      run: |
-cd task2 '
-      export appid=${{ secrets.AZURE_AD_CLIENT_ID }}
-      export tenant=${{ secrets.AZURE_AD_TENANT_ID }}
-      export password=${{ secrets.AZURE_AD_CLIENT_SECRET }}
-      export subscription=${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      export resourceGroup="test"
-      export vmName="test"
-      sh task.sh
-      shell: bash
+      run: cd task2 &&  export appid=${{ secrets.AZURE_AD_CLIENT_ID }} && export tenant=${{ secrets.AZURE_AD_TENANT_ID }} && export password=${{ secrets.AZURE_AD_CLIENT_SECRET }} && export subscription=${{ secrets.AZURE_SUBSCRIPTION_ID }} && export resourceGroup="test" && export vmName="test" && sh task.sh
