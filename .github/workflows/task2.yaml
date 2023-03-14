@@ -1,0 +1,32 @@
+name: 'Terraform'
+on:
+  push:
+    branches:
+    - test
+jobs:
+  sheel-script:
+    name: 'get-metaata'
+    runs-on: ubuntu-latest
+    environment: task
+    env:
+      ARM_CLIENT_ID: ${{ secrets.AZURE_AD_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+    defaults:
+      run:
+        shell: bash
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: get vm metadata
+      run: |
+      cd task2
+      export appid=${{ secrets.AZURE_AD_CLIENT_ID }}
+      export tenant=${{ secrets.AZURE_AD_TENANT_ID }}
+      export password=${{ secrets.AZURE_AD_CLIENT_SECRET }}
+      export subscription=${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      export resourceGroup="test"
+      export vmName="test"
+      sh task.sh
+      
