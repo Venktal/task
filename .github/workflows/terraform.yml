@@ -1,5 +1,9 @@
 
 name: 'Terraform'
+on:
+  push:
+    branches:
+    - test
 jobs:
   terraform:
     name: 'Terraform'
