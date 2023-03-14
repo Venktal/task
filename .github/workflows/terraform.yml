@@ -1,6 +1,5 @@
 
 name: 'Terraform'
-on: []
 jobs:
   terraform:
     name: 'Terraform'
